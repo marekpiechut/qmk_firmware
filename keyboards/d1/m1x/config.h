@@ -17,8 +17,13 @@
 
 #include "config_common.h"
 
-#define VENDOR_ID       0x4431 //"D1"
-#define PRODUCT_ID      0x4D31 //"M1"
+// #define VENDOR_ID       0x4431 //"D1"
+// #define PRODUCT_ID      0x4D31 //"M1"
+
+//We need to pretend we are Apple keyboard so expose will work
+#define VENDOR_ID       0x05AC // Apple inc.
+#define PRODUCT_ID      0x024F // Copied from Keychron
+//
 #define MANUFACTURER    DayOne
 #define PRODUCT         D1M1x
 #define DEVICE_VER      0x0001
