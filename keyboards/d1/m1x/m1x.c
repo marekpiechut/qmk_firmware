@@ -81,10 +81,24 @@ uint16_t ENC_CODES[ENC_CODES_LEN][2] = {
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case KC_ENC_CHANGE:
+    case KC_ENCT:
         if (record->event.pressed) {
             kb_config.encoder_mode = (kb_config.encoder_mode + 1) % ENC_CODES_LEN;
             eeconfig_update_kb(kb_config.raw);
+        }
+        return false;
+    case KC_EXPO:
+        if (record->event.pressed) {
+            register_code(KC_APPLE_FN);
+            tap_code(KC_F3);
+            unregister_code(KC_APPLE_FN);
+        }
+        return false;
+    case KC_LAUN:
+        if (record->event.pressed) {
+            register_code(KC_APPLE_FN);
+            tap_code(KC_F4);
+            unregister_code(KC_APPLE_FN);
         }
         return false;
     default:

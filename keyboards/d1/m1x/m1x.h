@@ -17,7 +17,9 @@
 #include "quantum.h"
 
 enum custom_keycodes {
-  KC_ENC_CHANGE = SAFE_RANGE,
+  KC_ENCT = SAFE_RANGE,
+  KC_EXPO,
+  KC_LAUN,
 };
 
 enum layers {
