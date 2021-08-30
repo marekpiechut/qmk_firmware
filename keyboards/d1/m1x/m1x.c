@@ -73,10 +73,10 @@ void keyboard_post_init_kb(void) {
 }
 
 #define ENC_CODES_LEN 3
-uint16_t ENC_CODES[ENC_CODES_LEN][2] = {
-    { KC_DOWN,   KC_UP },
-    { KC__VOLUP, KC__VOLDOWN },
-    { KC_BRIU,   KC_BRID }
+uint16_t ENC_CODES[ENC_CODES_LEN][4] = {
+    { KC_WH_U, KC_WH_D, KC_MS_WH_LEFT, KC_MS_WH_RIGHT },
+    { KC__VOLUP, KC__VOLDOWN, KC__VOLUP, KC__VOLDOWN },
+    { KC_BRIU,   KC_BRID, KC_BRIU,   KC_BRID }
 };
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
@@ -118,11 +118,12 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
             #endif
         } else {
             uint16_t* keycodes = ENC_CODES[(int)kb_config.encoder_mode];
+            uint8_t shifted_pos = get_mods() & MOD_MASK_SHIFT ? 2 : 0;
 
             if (clockwise) {
-                tap_code(keycodes[0]);
+                tap_code(keycodes[0 + shifted_pos]);
             } else {
-                tap_code(keycodes[1]);
+                tap_code(keycodes[1 + shifted_pos]);
             }
         }
         return true;
