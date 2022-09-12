@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
-#include "keymap_japanese.h"
+#include "keymap_jp.h"
 
 enum custom_layers {
     _QWERTY,
@@ -77,9 +77,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-#ifdef OLED_ENABLE
+#ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-  if (!is_keyboard_master()) {
+  if (!is_master) {
     return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
   }
   return rotation;
@@ -164,14 +164,13 @@ void oled_render_logo(void) {
     oled_write_P(crkbd_logo, false);
 }
 
-bool oled_task_user(void) {
-    if (is_keyboard_master()) {
+void oled_task_user(void) {
+    if (is_master) {
         oled_render_layer_state();
         oled_render_keylog();
     } else {
         oled_render_logo();
     }
-    return false;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -180,4 +179,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
-#endif // OLED_ENABLE
+#endif // OLED_DRIVER_ENABLE

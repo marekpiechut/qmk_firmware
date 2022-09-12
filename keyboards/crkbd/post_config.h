@@ -41,9 +41,3 @@
 #        define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120
 #    endif
 #endif
-
-#ifdef OLED_ENABLE
-    #ifndef OLED_FONT_H
-        #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
-    #endif
-#endif
