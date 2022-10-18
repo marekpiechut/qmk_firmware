@@ -38,6 +38,29 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 #define L_RAISE 4
 #define L_ADJUST 8
 
+
+const uint16_t PROGMEM combo_ei[] = {KC_E, KC_I, COMBO_END};
+const uint16_t PROGMEM combo_vm[] = {KC_V, KC_M, COMBO_END};
+const uint16_t PROGMEM combo_bn[] = {KC_B, KC_N, COMBO_END};
+// const uint16_t PROGMEM combo_af[] = {KC_A, KC_F, COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO_ACTION(combo_vm),
+    COMBO(combo_ei, KC_UNDS),
+    COMBO(combo_bn, KC_CAPS)
+    // COMBO(combo_af, KC_ESC)
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case 0:
+      if (pressed) {
+        caps_word_on();  // Activate Caps Word!
+      }
+      break;
+  }
+}
+
+
 void oled_render_layer_state(void) {
     oled_write_P(PSTR("Layer: "), false);
     switch (layer_state) {

@@ -46,6 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define USE_SERIAL
 /* serial.c configuration for split keyboard */
 #define SOFT_SERIAL_PIN D2
+#define SPLIT_USB_DETECT false
 
 #define EE_HANDS
 
